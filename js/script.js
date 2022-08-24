@@ -18,11 +18,12 @@ function removerStorage() {
 }
 
 async function adicionarCep() {
+    cep.value.replace('-', '').trim()
     let url = `https://viacep.com.br/ws/${cep.value}/json/`
     await fetch(url)
         .then((resp) => resp.json())
         .then((json) => adicionarStorage(json))
-
+        .catch((err) => alert('Cep invalido'))
     atualizarTela()
 }
 
