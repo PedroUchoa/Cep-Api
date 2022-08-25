@@ -2,6 +2,7 @@ const cep = document.getElementById('cep');
 const searchButton = document.getElementById('search-button');
 const deleteButton = document.getElementById('deleteButton');
 const table = document.getElementById('table');
+const alertShow = document.querySelector('.add-alert')
 let cidade = JSON.parse(localStorage.getItem('banco')) ?? []
 
 function adicionarStorage(value) {
@@ -17,15 +18,6 @@ function removerStorage() {
     }
 }
 
-async function adicionarCep() {
-    cep.value.replace('-', '').trim()
-    let url = `https://viacep.com.br/ws/${cep.value}/json/`
-    await fetch(url)
-        .then((resp) => resp.json())
-        .then((json) => adicionarStorage(json))
-        .catch((err) => alert('Cep invalido'))
-    atualizarTela()
-}
 
 function atualizarTela() {
     cep.value = ''
@@ -42,10 +34,31 @@ function atualizarTela() {
         `
             itemTable.appendChild(tr)
             table.appendChild(itemTable)
+          
         });
     }
 }
 
+const showAlert = () =>{
+    alertShow.classList.remove('add-none')
+    setTimeout(function(){
+        alertShow.classList.add('add-none')
+    }, 1500)
+}
+
+async function adicionarCep() {
+    cep.value.replace('-', '').trim()
+    let url = `https://viacep.com.br/ws/${cep.value}/json/`
+    await fetch(url)
+        .then((resp) => resp.json())
+        .then((json) => {
+            adicionarStorage(json)
+            showAlert()
+        })
+        .catch((err) => alert('Cep invalido'))
+    atualizarTela()
+   
+}
 
 searchButton.addEventListener('click', adicionarCep)
 deleteButton.addEventListener('click', removerStorage)
