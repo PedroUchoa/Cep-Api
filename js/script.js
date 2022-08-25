@@ -24,8 +24,9 @@ function removerStorage() {
 function atualizarTela() {
     cep.value = ''
     const banco = JSON.parse(localStorage.getItem('banco'))
-    table.removeChild(table.lastChild)
     const itemTable = document.createElement('tbody')
+    itemTable.id = "tableBody"
+    table.lastChild.id == "tableBody" ? table.removeChild(table.lastChild) : ""
     if (banco !== null) {
         banco.forEach(element => {
             let tr = document.createElement('tr')
