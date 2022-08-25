@@ -2,7 +2,8 @@ const cep = document.getElementById('cep');
 const searchButton = document.getElementById('search-button');
 const deleteButton = document.getElementById('deleteButton');
 const table = document.getElementById('table');
-const alertShow = document.querySelector('.add-alert')
+const alertAdd = document.querySelector('.add-alert')
+const alertRemove = document.querySelector('.remove-alert')
 let cidade = JSON.parse(localStorage.getItem('banco')) ?? []
 
 function adicionarStorage(value) {
@@ -15,6 +16,7 @@ function removerStorage() {
         cidade = []
         localStorage.removeItem('banco')
         atualizarTela()
+        showAlert(alertRemove)
     }
 }
 
@@ -29,6 +31,8 @@ function atualizarTela() {
             let tr = document.createElement('tr')
             tr.innerHTML = `
                 <td>${element.cep}</td>
+                <td>${element.logradouro == "" ? 'Indisponivel' : element.logradouro }</td>
+                <td>${element.bairro == "" ? 'Indisponivel' : element.bairro }</td>
                 <td>${element.localidade}</td>
                 <td>${element.uf}</td>
         `
@@ -39,11 +43,11 @@ function atualizarTela() {
     }
 }
 
-const showAlert = () =>{
-    alertShow.classList.remove('add-none')
+const showAlert = (alerta) =>{
+    alerta.classList.remove('add-none')
     setTimeout(function(){
-        alertShow.classList.add('add-none')
-    }, 1500)
+        alerta.classList.add('add-none')
+    }, 3000)
 }
 
 async function adicionarCep() {
@@ -53,7 +57,7 @@ async function adicionarCep() {
         .then((resp) => resp.json())
         .then((json) => {
             adicionarStorage(json)
-            showAlert()
+            showAlert(alertAdd)
         })
         .catch((err) => alert('Cep invalido'))
     atualizarTela()

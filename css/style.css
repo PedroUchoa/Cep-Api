@@ -75,12 +75,21 @@ nav .searchContainer button:hover{
     flex-direction: column;
 }
 
-.add-alert{
+.add-container{
+    width: 50%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-alert, .remove-alert{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50%;
     height: 30px;
+    padding: 10px;
     color: #4cff4c;
     font-weight: bold;
     font-size: 20px;
@@ -88,6 +97,10 @@ nav .searchContainer button:hover{
     border-radius: 10px;
     background-color: #A594F9;
     transition: all 5s ease-in-out;
+}
+
+.remove-alert{
+    color: red;
 }
 
 .add-none{

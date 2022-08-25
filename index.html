@@ -20,19 +20,24 @@
     </nav>
 
     <section class="list-principal">
-        <div class="add-alert add-none">CEP Adicionado com sucesso</div>
+        <div class="add-container">
+            <span class="add-alert add-none">CEP Adicionado com sucesso</span>
+            <span class="remove-alert add-none">CEPs Removidos com sucesso</span>
+        </div>
         <div class="list-container">
             <button id="deleteButton"><i class="fa-solid fa-trash"></i></button>
             <table id="table">
                 <thead>
                     <tr>
                         <th>CEP</th>
+                        <th>Logradrouro</th>
+                        <th>Bairro</th>
                         <th>Localidade</th>
                         <th>UF</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    
+
                 </tbody>
             </table>
         </div>
