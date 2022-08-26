@@ -130,9 +130,14 @@ nav .searchContainer button:hover{
     color: #EDE4F9;
 }  
 
+.list-container td button{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}
+
 .list-principal table{
     width: 100%;
-    border-radius: 10px;
 }
 
 .list-container td{

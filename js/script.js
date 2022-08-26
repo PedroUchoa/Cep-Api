@@ -20,6 +20,13 @@ function removerStorage() {
     }
 }
 
+function excluirElemento(event){
+    let child = event.target.parentNode.parentNode
+    cidade.splice(child.id, 1)
+    localStorage.setItem('banco', JSON.stringify(cidade))
+    atualizarTela()
+}
+
 
 function atualizarTela() {
     cep.value = ''
@@ -28,14 +35,16 @@ function atualizarTela() {
     itemTable.id = "tableBody"
     table.lastChild.id == "tableBody" ? table.removeChild(table.lastChild) : ""
     if (banco !== null) {
-        banco.forEach(element => {
+        banco.forEach((element, index) => {
             let tr = document.createElement('tr')
+            tr.id = index
             tr.innerHTML = `
                 <td>${element.cep}</td>
                 <td>${element.logradouro == "" ? 'Indisponivel' : element.logradouro }</td>
                 <td>${element.bairro == "" ? 'Indisponivel' : element.bairro }</td>
                 <td>${element.localidade}</td>
                 <td>${element.uf}</td>
+                <td><button onclick="excluirElemento(event)">X</button></td>
         `
             itemTable.appendChild(tr)
             table.appendChild(itemTable)
